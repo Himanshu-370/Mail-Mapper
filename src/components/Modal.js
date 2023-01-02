@@ -77,7 +77,7 @@ function Modal() {
               <br />
 
               <button className="btn btn-primary" type="submit">
-                Submit
+                Search
               </button>
             </form>
             <br /> <br />
