@@ -4,7 +4,9 @@ import AuthenticationButton from "./AuthenticationButton";
 function NavBar() {
   return (
     <div className="navbar">
-      <div className="logo">MM.</div>
+      <div className="logo">
+        MM.
+      </div>
       <div className="nav-links">
         <ul>
           <li>
