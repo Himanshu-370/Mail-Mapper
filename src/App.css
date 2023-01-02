@@ -1,38 +1,99 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bad+Script&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ul {
+  list-style-type: none;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+li a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  margin-left: 2.5rem;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  margin: 0 !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar {
+  align-items: center !important;
+  font-size: 1.5rem;
+  font-family: "Anton", sans-serif;
+  color: white;
+}
+
+.bg-red {
+  background-color: #890000;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 50%;
+  z-index: -10;
+}
+
+.word-bg {
+  color: #890000;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+}
+
+.para {
+  font-family: "Bad Script", cursive;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.head {
+  font-size: 10rem;
+  font-family: "Anton", sans-serif;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+}
+
+.detail {
+  float: right;
+  text-align: right;
+}
+
+.modal-bg {
+  background-color: rgba(49, 49, 49, 0.8);
+}
+
+.modal-content {
+  padding: 1rem;
+}
+
+#text-input {
+  height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 0 12px;
+}
+
+/* Style for select input */
+#select-input {
+  height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 0 12px;
+  background-color: #fff;
 }

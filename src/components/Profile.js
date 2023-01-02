@@ -10,10 +10,9 @@ function Profile() {
 
   return (
     isAuthenticated && (
-      <div>
-        <img src={user.picture} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
+      <div className="detail">
+        <h4 className="word-bg">{user.name}</h4>
+        <p className="word-bg">{user.email}</p>
       </div>
     )
   );
