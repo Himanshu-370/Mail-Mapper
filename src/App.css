@@ -36,11 +36,6 @@ h1 {
   scale: 1.1;
 }
 
-.logo {
-  width: 200px;
-  height: auto;
-}
-
 .bg-red {
   background-color: #890000;
   position: absolute;
