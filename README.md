@@ -7,7 +7,7 @@ To use Mail Mapper, users simply enter the domain of the company they are intere
 
 # Get Started with Mail Mapper
  
-- Go on to www.mailmapper.com
+- Go on to https://mailmapper.vercel.app/
 - Log In to get started
 - Click on the Input button
 - Write the domain of the company
