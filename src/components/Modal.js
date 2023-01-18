@@ -95,7 +95,9 @@ function Modal() {
                   <tbody>
                     {(!data.data ||
                       !data.data.emails ||
-                      data.data.emails.length === 0) && <div>Nothing Found</div>}
+                      data.data.emails.length === 0) && (
+                      <div>Nothing Found</div>
+                    )}
                     {data.data &&
                       data.data.emails &&
                       data.data.emails.map((item, index) => (
@@ -106,7 +108,9 @@ function Modal() {
                           </td>
                           <td>{item.position}</td>
                           <td>
-                            <a href={`mailto:${item.value}`}>{item.value}</a>
+                            <a href={`mailto:${item.value}`} target="_blank">
+                              {item.value}
+                            </a>
                           </td>
                           <td>
                             <a href={item.linkedin} target="_blank">
