@@ -1,18 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import AuthenticationButton from "./AuthenticationButton";
+import Profile from "./Profile";
 
 function NavBar() {
   return (
     <div className="navbar">
-      <div className="logo">
-        MM.
-      </div>
+      <div className="logo">MailMapper.</div>
       <div className="nav-links">
         <ul>
+        <li>
+            <Link to="/" className="homelink">Home</Link>
+          </li>
           <li>
-            <a href="">
-              Ho<span className="word-bg">me</span>
-            </a>
+            <Link to="/about" className="word-bg">About</Link>
           </li>
         </ul>
       </div>

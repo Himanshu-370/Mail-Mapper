@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from "./Modal";
 import Home from "./Home";
+import About from "./About";
 
 function Hero() {
   const { isAuthenticated } = useAuth0();

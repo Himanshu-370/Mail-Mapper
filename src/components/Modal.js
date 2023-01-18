@@ -24,8 +24,6 @@ function Modal() {
       .catch((error) => console.log(error));
   }
 
-  let counter = 1;
-
   return (
     <>
       <button
@@ -34,7 +32,7 @@ function Modal() {
         data-toggle="modal"
         data-target=".bd-example-modal-lg"
       >
-        Input
+        Search Here...
       </button>
 
       <Home />
@@ -49,7 +47,7 @@ function Modal() {
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <form onSubmit={handleSubmit}>
-              <label for="text-input">Name of the Company</label>
+              <label for="text-input">Write the domain of the company</label>
               <br />
               <input
                 type="text"
@@ -71,7 +69,8 @@ function Modal() {
               >
                 <option value="option1">IT</option>
                 <option value="option2">HR</option>
-                <option value="option3">Security</option>
+                <option value="option3">Security Engineer</option>
+                <option value="option4">Marketing</option>
               </select>
               <br />
               <br />
@@ -83,33 +82,40 @@ function Modal() {
             <br /> <br />
             {data && (
               <div className="api-data">
-                <table className="table">
+                <table class="table table-striped">
                   <thead>
-                    <thead>
-                      <tr>
-                        <th scope="col">S.no</th>
-                        <th scope="col">Name of the Employee</th>
-                        <th scope="col">Position</th>
-                        <th scope="col">Email Address</th>
-                        <th scope="col">Linkedin Profile</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.data.emails.map((item) => (
-                        <tr key={item.id}>
-                          <td>{counter}</td>
+                    <tr>
+                      <th scope="col">S.No</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Position</th>
+                      <th scope="col">Email Address</th>
+                      <th scope="col">Linkedin Profile</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(!data.data ||
+                      !data.data.emails ||
+                      data.data.emails.length === 0) && <div>Nothing Found</div>}
+                    {data.data &&
+                      data.data.emails &&
+                      data.data.emails.map((item, index) => (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
                           <td>
                             {item.first_name} {item.last_name}
                           </td>
                           <td>{item.position}</td>
-                          <td>{item.value}</td>
                           <td>
-                            <a href={item.linkedin}>{item.linkedin}</a>
+                            <a href={`mailto:${item.value}`}>{item.value}</a>
+                          </td>
+                          <td>
+                            <a href={item.linkedin} target="_blank">
+                              {item.linkedin}
+                            </a>
                           </td>
                         </tr>
                       ))}
-                    </tbody>
-                  </thead>
+                  </tbody>
                 </table>
               </div>
             )}
