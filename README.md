@@ -11,8 +11,8 @@ To use Mail Mapper, users simply enter the domain of the company they are intere
 - Log In to get started
 - Click on the Input button
 - Write the domain of the company
-  <br/>For eg: stripe.com
+  <br/>For eg: adidas.com
 - Click on the department you want to search
 - Click Search
 
-- You will all the results showing the details like name of the employee, their position, their email address and linkedin profiles.
+- You will get all the results showing the details like name of the employee, their position, their email address and linkedin profiles.
