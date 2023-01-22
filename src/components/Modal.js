@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Home from "./Home";
+import Papa from "papaparse";
 
 function Modal() {
   const [textInput, setTextInput] = useState("");
   const [selectInput, setSelectInput] = useState("");
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   function handleTextInputChange(event) {
     setTextInput(event.target.value);
@@ -18,10 +20,28 @@ function Modal() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setLoading(true);
     fetch(URL)
       .then((response) => response.json())
-      .then((data) => setData(data))
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
       .catch((error) => console.log(error));
+  }
+
+  function handleDownload() {
+    if (!data || !data.data.emails || data.data.emails.length === 0) {
+      alert("No data found");
+      return;
+    }
+    const csv = Papa.unparse(data.data.emails);
+    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const csvURL = window.URL.createObjectURL(csvData);
+    const tempLink = document.createElement("a");
+    tempLink.href = csvURL;
+    tempLink.setAttribute("download", "data.csv");
+    tempLink.click();
   }
 
   return (
@@ -68,16 +88,35 @@ function Modal() {
                 onChange={handleSelectInputChange}
               >
                 <option value="option1">IT</option>
-                <option value="option2">HR</option>
-                <option value="option3">Security Engineer</option>
-                <option value="option4">Marketing</option>
+                <option value="option2">Finance</option>
+                <option value="option3">Management</option>
+                <option value="option4">Sales</option>
+                <option value="option5">Legal</option>
+                <option value="option6">Support</option>
+                <option value="option7">HR</option>
+                <option value="option8">Marketing</option>
+                <option value="option9">Communication</option>
               </select>
               <br />
               <br />
 
-              <button className="btn btn-primary" type="submit">
-                Search
-              </button>
+              <div className="btns">
+                <button className="btn btn-primary" type="submit">
+                  Search
+                </button>
+
+                {loading ? (
+                  <div>Loading...</div>
+                ) : data ? (
+                  <button
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={handleDownload}
+                  >
+                    Download as CSV
+                  </button>
+                ) : null}
+              </div>
             </form>
             <br /> <br />
             {data && (
