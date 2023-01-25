@@ -3,26 +3,32 @@ import Home from "./Home";
 import Papa from "papaparse";
 
 function Modal() {
+  //State variables
   const [textInput, setTextInput] = useState("");
   const [selectInput, setSelectInput] = useState("");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  //function to handle text input change
   function handleTextInputChange(event) {
     setTextInput(event.target.value);
   }
 
+  //function to handle dropdown menu change
   function handleSelectInputChange(event) {
     setSelectInput(event.target.value);
   }
 
+  //API endpoint URL
   const URL = `https://api.hunter.io/v2/domain-search?domain=${textInput}&api_key=20651b8fb05a86abb9a0490bce5cfe87a2476b40&department=${selectInput}`;
 
+  //function to handle submit button
   function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(); //prevents the page from refreshing
     setLoading(true);
+    //making fetch request to the API endpoint
     fetch(URL)
-      .then((response) => response.json())
+      .then((response) => response.json()) //converts the response to JSON
       .then((data) => {
         setData(data);
         setLoading(false);
@@ -30,22 +36,24 @@ function Modal() {
       .catch((error) => console.log(error));
   }
 
+  //function to handle download as csv button
   function handleDownload() {
     if (!data || !data.data.emails || data.data.emails.length === 0) {
       alert("No data found");
       return;
     }
     const csv = Papa.unparse(data.data.emails);
-    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const csvURL = window.URL.createObjectURL(csvData);
-    const tempLink = document.createElement("a");
-    tempLink.href = csvURL;
-    tempLink.setAttribute("download", "data.csv");
-    tempLink.click();
+    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" }); //creates a Blob object containing the csv data with specified type
+    const csvURL = window.URL.createObjectURL(csvData); //creates url object that can be used to download the data
+    const tempLink = document.createElement("a"); //creates a a tag element that is used to create a temp link for downloading data
+    tempLink.href = csvURL; //assigning href property
+    tempLink.setAttribute("download", "data.csv"); //used to show a prompt to the user to download data
+    tempLink.click(); //triggers click event
   }
 
   return (
     <>
+      {/* toggles modal button */}
       <button
         type="button"
         class="btn btn-primary"
@@ -54,9 +62,7 @@ function Modal() {
       >
         Search Here...
       </button>
-
       <Home />
-
       <div
         class="modal fade bd-example-modal-lg"
         tabindex="-1"
@@ -66,6 +72,7 @@ function Modal() {
       >
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
+            {/* form starts here */}
             <form onSubmit={handleSubmit}>
               <label for="text-input">Write the domain of the company</label>
               <br />
@@ -105,6 +112,7 @@ function Modal() {
                   Search
                 </button>
 
+                {/* Condiitonal statement that checks if the loading state is true, render loading... and else if there is data it renders a download as csv button */}
                 {loading ? (
                   <div>Loading...</div>
                 ) : data ? (
@@ -119,6 +127,7 @@ function Modal() {
               </div>
             </form>
             <br /> <br />
+            {/* Checks if there is any data in the state */}
             {data && (
               <div className="api-data">
                 <table class="table table-striped">
@@ -132,11 +141,13 @@ function Modal() {
                     </tr>
                   </thead>
                   <tbody>
+                    {/* checks if there is no data in the respionse or the email array is empty, in that case render nothing found */}
                     {(!data.data ||
                       !data.data.emails ||
                       data.data.emails.length === 0) && (
                       <div>Nothing Found</div>
                     )}
+                    {/* maps through the data and renders a row for each data item */}
                     {data.data &&
                       data.data.emails &&
                       data.data.emails.map((item, index) => (
